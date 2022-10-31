@@ -14,12 +14,14 @@ var timerCount;
 
 // Win condition checker initial state
 var isWin = false;
+// Sets up a 
 var incorrectGuesses = 0
 
 // Initial state for buckets that will reset main content to dashes as well as hold the values of the chosen word
 var chosenWord;
 var dashes = []
 var totalLetters = []
+var incorrectLetters = []
 
 // Possible word bucket 
 var words = ["variable","array", "modulus", "object", "function", "string", "boolean"];
@@ -81,20 +83,21 @@ var checkLetters = function(letter) {
     for (var i = 0; i < dashes.length; i++) {
        if (totalLetters[i] === letter) {
         letterInWord = true
-    }
+        } 
         if (letterInWord) {
             for(var j = 0; j < dashes.length; j++) {
                 if(chosenWord[j] === letter) {
                     dashes[j] = letter
                 }
             }
-        } else {
-            console.log('incorrect guess') 
-            incorrectGuesses++
-            }
         }
-        wordBlanks.textContent = dashes.join(" ")
     }
+    if(!letterInWord) {
+        incorrectGuesses++
+        incorrectLetters.push(letter)
+        console.log(`${incorrectGuesses} Incorrect guesses`)
+    }
+    wordBlanks.textContent = dashes.join(" ")
 }
 
 var checkWin = function() {
@@ -117,13 +120,6 @@ document.addEventListener("keydown", function(event) {
         checkWin()
     } 
 })
-
-
-
-
-
-
-
 
 startButton.addEventListener('click', startGame)
 
