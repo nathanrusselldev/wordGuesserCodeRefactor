@@ -7,6 +7,8 @@ var startButton = document.querySelector(".start-button")
 var resetButton = document.querySelector(".reset-button")
 var winsEle = document.querySelector(".win")
 var lossesEle = document.querySelector(".lose")
+var snowManImg = document.querySelector("#snowManImg")
+var incorrectEle = document.querySelector("#incorrectLetters")
 // Timer stuff, setting initial values for timer and timercount so that timer can be decremented
 var timerElement = document.querySelector(".timer-count")
 var timer;
@@ -14,7 +16,7 @@ var timerCount;
 
 // Win condition checker initial state
 var isWin = false;
-// Sets up a 
+// Sets up a bucket for incorrect guesses
 var incorrectGuesses = 0
 
 // Initial state for buckets that will reset main content to dashes as well as hold the values of the chosen word
@@ -29,9 +31,13 @@ var words = ["variable","array", "modulus", "object", "function", "string", "boo
 var startGame = function() {
     wordBlanks.textContent = ""
     dashes = []
+    incorrectLetters = []
+    incorrectEle.textContent = incorrectLetters.join("")
     chosenWord = ""
     timerCount = 10;
     isWin = false;
+    incorrectGuesses = 0
+    snowManImg.style.clipPath = "polygon(0% 0%,100% 0%,100% 0%,0% 0%)"
     startTimer()
     renderBlanks()
 }
@@ -59,7 +65,7 @@ var startTimer = function() {
                 winGame()
             }
         }
-        if(timerCount === 0) {
+        if(timerCount === 0 || incorrectGuesses === 5) {
             clearInterval(timer)
             loseGame()
         }
@@ -78,6 +84,10 @@ var renderBlanks = function() {
     wordBlanks.textContent = dashes.join(" ")
 }
 
+var renderIncorrect = function() {
+    incorrectEle.textContent = incorrectLetters.join(", ").toUpperCase()
+}
+
 var checkLetters = function(letter) {
     var letterInWord = false;
     for (var i = 0; i < dashes.length; i++) {
@@ -94,8 +104,25 @@ var checkLetters = function(letter) {
     }
     if(!letterInWord) {
         incorrectGuesses++
-        incorrectLetters.push(letter)
+        if(incorrectLetters.includes(letter)) {
+            renderIncorrect()
+        } else {
+            incorrectLetters.push(letter)
+            renderIncorrect()
+        }
         console.log(`${incorrectGuesses} Incorrect guesses`)
+        if (incorrectGuesses === 5) {
+            snowManImg.style.clipPath = "polygon(0% 0%,100% 0%,100% 100%,0% 100%)"
+        } else if (incorrectGuesses === 4) {
+            snowManImg.style.clipPath = "polygon(0% 0%,100% 0%,100% 80%,0% 80%)"
+        } else if (incorrectGuesses === 3) {
+            snowManImg.style.clipPath = "polygon(0% 0%,100% 0%,100% 60%,0% 60%)"
+        } else if (incorrectGuesses === 2) {
+            snowManImg.style.clipPath = "polygon(0% 0%,100% 0%,100% 40%,0% 40%)"
+        } else if (incorrectGuesses === 1) {
+            snowManImg.style.clipPath = "polygon(0% 0%,100% 0%,100% 20%,0% 20%)"
+        } 
+
     }
     wordBlanks.textContent = dashes.join(" ")
 }

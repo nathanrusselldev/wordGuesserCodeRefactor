@@ -7,9 +7,10 @@
     <link rel="stylesheet" type="text/css" href="./assets/css/style.css" />
   </head>
   <body>
-    <header>
-      <div class= "large-font">Word Guess Game</div>
-      <button class="start-button">Start</button>
+    <header class = fullNav>
+      <div class= "large-font navStart">
+        <h1> Word Guess Game </h1> 
+      </div>
       <div class= "card timer">
         <div class = "timer-text">
         <div class="large-font timer-count">10</div>
@@ -17,28 +18,40 @@
       </div>
     </header>
 
-    <main>
-      <section>
-        <div class="card word-guess">
-          <div class="large-font word-blanks">J _ v _ S c r_ _t</div>
-        </div>
-      </section>
+    <div class="buttonSect">
+      <button class="start-button">Start Game</button>
+    </div>
 
-      <section>
-        <div class="card results">
-          <div class = "win-loss-container">
-          <div>
-          <h2>Wins: <span class="win">0 </span> </h2>
-          <h2>Losses: <span class="lose">0</span></h2>
-        </div>
-          <button class="reset-button">Reset Score</button>
-      </div>
-          
-        
-          </div>
+
+    <main class="content">
+      <section class="wordArea">
+        <div class="card word-guess">
+          <div class="word-blanks">J _ v _ S c r_ _t</div>
         </div>
       </section>
+      <aside class="snowMan">
+        <div class="snowManRender">
+          <h4>See the full Snowman or run out of time and you lose!</h4>
+          <img id="snowManImg" src="assets/images/snowman-clipart-transparent-background-4.png" alt="">
+        </div>
+      </aside>
     </main>
+
+    <figure>
+      <div>
+        <p id="incorrectLetters">Incorrect Letters Guessed: <br></p>
+      </div>
+    </figure>
+
+    <footer>
+      <div class="card results">
+        <div class = "win-loss-container">
+        <div>
+        <h2>Wins: <span class="win">0 </span> </h2>
+        <h2>Losses: <span class="lose">0</span></h2>
+        </div>
+        <button class="reset-button">Reset Score</button>
+    </footer>
     <script src="assets/js/script.js"></script>
   </body>
 </html>

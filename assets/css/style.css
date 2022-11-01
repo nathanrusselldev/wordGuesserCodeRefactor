@@ -3,7 +3,91 @@
 }
 
 body {
-  font-family: Arial;
   margin: 0;
+  background: rgb(154,154,154);
+  background: linear-gradient(128deg, rgba(154,154,154,1) 23%, rgba(155,155,155,1) 43%, rgba(156,156,156,1) 61%, rgba(157,157,157,1) 85%, rgba(235,0,0,1) 98%); 
+  color: white;
+} 
+
+.fullNav {
+  min-width: 100vw;
+  margin-bottom: 10px;
+  border-bottom: solid black 2px;
+  display: flex;
 }
 
+.navStart {
+  width: 75%;
+}
+
+.timer {
+  width: 25%;
+  display: flex;
+  align-content: center;
+  justify-content: center;
+}
+
+.buttonSect {
+  width: 100%;
+  height: 125px;
+  display: flex;
+  justify-content: center;
+  border-bottom: solid black 2px;
+
+}
+
+.buttonSect button {
+  width: 300px;
+  margin-bottom: 10px;
+  font-size: 50px;
+  background-color: #9a9a9a;
+  color: white;
+  transition: border-radius .5s linear;
+  transition: background-color .5s ease-out;
+}
+
+.buttonSect button:hover {
+  border-radius: 10px;
+  background-color: #eb0000;
+  cursor: grab;
+}
+
+.content {
+  display: flex;
+  justify-content: space-between;
+  height: 650px;
+  border-bottom: 2px solid;
+}
+
+.wordArea {
+  width: 80%;
+  height: 80%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.word-blanks {
+  font-size: 50px;
+  font-weight: 900;
+}
+
+.snowMan {
+  width: 25%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: flex-start;
+  border: 2px solid black;
+}
+
+#snowManImg {
+  max-width: 350px;
+  display: block;
+  clip-path: polygon(0% 0%,100% 0%,100% 100%,0% 100%);
+  transition: clip-path 1s linear;
+}
+#incorrectLetters {
+  font-size: 25px;
+  font-weight: 900;
+}
